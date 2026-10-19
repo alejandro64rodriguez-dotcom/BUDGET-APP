@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { services, type Service } from "@/pages/service"
+import { services, type Service } from "@/types/service"
 
 function ServiceSelector(){
  const [selectedServices, setSelectedServices]= useState<Service[]>([])
@@ -14,15 +14,18 @@ function ServiceSelector(){
   });
 }
 return (
-  <div>
+  <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
     {services.map((service) => {
       return (
-        <button key={service.id}
-        onClick={() => addService(service)}
-        aria-pressed={selectedServices.some(
-        (item) => item.id === service.id)}>
+        <div 
+        key={service.id}
+        className='w-full rounded-lg border p-4 text-left'
+         ><div className='flex justify-between'>
           {service.name}
-        </button>
+          <p>{service.price} €</p>
+          <input type='checkbox' />
+          </div>
+        </div>
       );
     })} 
   </div>
