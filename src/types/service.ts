@@ -1,11 +1,12 @@
+
+import data from '@/data/services.json'
+
 export type Service = {
   id: string
   name: string
+  description: string
   price: number
+  configurable: boolean
 }
 
-export const services: Service[] = [
-  { id: 'web', name: 'Diseño web', price: 500 },
-  { id: 'seo', name: 'SEO', price: 300 },
-  { id: 'publicitat', name: 'Publicitat', price: 400 },
-]
+export const services: Service[] = data
