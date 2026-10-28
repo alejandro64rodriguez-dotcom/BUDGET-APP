@@ -1,4 +1,3 @@
-// src/pages/HomePage.tsx
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { services, type Service } from "@/types/service"
