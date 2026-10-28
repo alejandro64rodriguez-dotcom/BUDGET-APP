@@ -1,39 +1,100 @@
-import { useState } from "react"
+// src/pages/HomePage.tsx
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import { services, type Service } from "@/types/service"
-import ServiceCard from "@/components/serviceCard"
+import type { Budget, BudgetFormData } from "@/types/budget"
+import Header from "@/components/Header"
+import ServiceCard from "@/components/ServiceCard"
+import BudgetForm from "@/components/BudgetForm"
+import BudgetSummary from "@/components/BudgetSummary"
+import BudgetCard from "@/components/BudgetCard"
+import { getBudgetTotal } from "@/utils/budget"
+import BudgetSearch from "@/components/BudgetSearch"
+import { filterAndSortBudgets } from "@/utils/budgetSearch"
 
-function ServiceSelector(){
- const [selectedServices, setSelectedServices]= useState<Service[]>([])
- 
- const [languages, setLanguages] = useState(0)
- const [pages, setPages] = useState(1)
-  function addService(service: Service): void {
-  setSelectedServices((previousServices) => {
-   if (previousServices.some((item ) => item.id === service.id)) {
-    return previousServices.filter((item) => item.id !== service.id)
-   } else {
-    return[...previousServices, service]
-   }
-  });
+function HomePage() {
+  const navigate = useNavigate()
+  const [selectedServices, setSelectedServices] = useState<Service[]>([])
+  const [searchTerm, setSearchTerm] = useState<string>("")
+  const [sortBy, setSortBy] = useState<"price" | "name" | null>(null)
+  const [languages, setLanguages] = useState(1)
+  const [pages, setPages] = useState(1)
+  const totalPrice = getBudgetTotal(selectedServices, { pages, languages })
+  const [budgets, setBudgets] = useState<Budget[]>(()=>{
+  const savedBudgets = localStorage.getItem("budgets")
+  return savedBudgets ? JSON.parse(savedBudgets) as Budget[] : []
+})
+useEffect(() => {
+  localStorage.setItem("budgets", JSON.stringify(budgets))
+}, [budgets])
+
+  const filteredBudgets = filterAndSortBudgets(
+  budgets,
+  searchTerm,
+  sortBy,
+)
+  function toggleService(service: Service): void {
+    setSelectedServices((previous) =>
+      previous.some((item) => item.id === service.id)
+        ? previous.filter((item) => item.id !== service.id)
+        : [...previous, service]
+    )
+  }
+  function handleBudgetSubmit(formData: BudgetFormData): void {
+    const newBudget: Budget = {
+      id: crypto.randomUUID().slice(0, 8),
+      client: formData,
+      services: [...selectedServices],
+      pages,
+      languages,
+      totalPrice,
+    }
+    setBudgets((previous) => [...previous, newBudget])
+  }
+
+  function handleViewDetails(budget: Budget): void {
+    navigate(`/budgets/${encodeURIComponent(budget.id)}`, {
+      state: { budget },
+    })
+  }
+
+  return (
+    <>
+      <Header />
+
+      <main className="grid grid-cols-1 items-start gap-4 px-4 py-6 sm:px-6 lg:px-60">
+        {services.map((service) => (
+          <ServiceCard
+            key={service.id}
+            service={service}
+            isSelected={selectedServices.some((item) => item.id === service.id)}
+            onToggle={() => toggleService(service)}
+            pages={pages}
+            languages={languages}
+            setPages={setPages}
+            setLanguages={setLanguages}
+          />
+        ))}
+
+        <BudgetSummary totalPrice={totalPrice} />
+        <BudgetForm onSubmit={handleBudgetSubmit} />
+        <BudgetSearch 
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        noResults={filteredBudgets.length === 0}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+         />
+        {filteredBudgets.map((budget) => (
+          <BudgetCard
+            key={budget.id}
+            budget={budget}
+            onViewDetails={handleViewDetails}
+          />
+        ))}
+      </main>
+    </>
+  )
 }
-return (
-  <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
-    {services.map((service) => {
-      const isSelected = selectedServices.some((item)=> item.id === service.id)
-      return (
-       <ServiceCard
-       key={service.id}
-       isSelected={isSelected}
-       onToggle={() => addService(service)}
-       service={service}
-       pages={pages}
-       languages={languages}
-       setLanguages={setLanguages}
-       setPages={setPages}
-     />
-      );
-    })} 
-  </div>
-);
-}
-export default ServiceSelector
+
+export default HomePage
