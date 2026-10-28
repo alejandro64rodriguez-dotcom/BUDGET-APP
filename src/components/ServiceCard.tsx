@@ -21,7 +21,6 @@ function ServiceCard(props: ServiceCardProps) {
           : "border-gray-200 bg-white"
       }`}
     >
-      {/* Nombre, precio y selección del servicio */}
       <div className="flex items-center justify-between gap-4">
         <div className="flex-1">
           <p className="font-semibold">{props.service.name}</p>
@@ -44,10 +43,8 @@ function ServiceCard(props: ServiceCardProps) {
           </span>
         </label>
       </div>
-      {/* Configuración exclusiva de Diseño web */}
       {props.isSelected && isWeb && (
         <div className="mt-6 flex flex-col items-end gap-2">
-          {/* Número de páginas */}
           <div className="flex items-center gap-3">
             <span className="text-sm">
               Número pàgines:
@@ -80,7 +77,6 @@ function ServiceCard(props: ServiceCardProps) {
 
             </div>
           </div>
-          {/* Número de idiomas */}
           <div className="flex items-center gap-3">
             <span className="text-sm">
               Número llenguatges:

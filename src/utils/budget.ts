@@ -1,4 +1,3 @@
-// src/utils/budget.ts
 import type { Service } from "@/types/service"
 
 const PRICE_PER_PAGE = 30
