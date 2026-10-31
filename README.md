@@ -2,8 +2,9 @@
 
 Aplicación web para crear, buscar y consultar presupuestos de servicios. Incluye formulario con validación, listado con búsqueda, vista de detalle y resumen del presupuesto.
 
-                             Live Demo [https://budget-appa.netlify.app/](https://budget-appa.netlify.app)
-                         
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/alejandro64rodriguez-dotcom/BUDGET-APP)
+
+
 ## Tecnologías
 
 - **JavaScript / TypeScript**: el código está escrito en TypeScript (`.ts` / `.tsx`)
