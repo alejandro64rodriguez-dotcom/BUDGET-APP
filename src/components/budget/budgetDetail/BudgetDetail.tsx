@@ -1,8 +1,8 @@
 import type { Budget } from "@/types/budget"
 import { formatPrice, getServiceLabel } from "@/utils/budget"
-import BudgetServiceItem from "@/components/budget/BudgetServiceItem"
-import BudgetTerms from "@/components/budget/BudgetTerms"
-import ActivityTimeline from "@/components/budget/ActivityTimeline"
+import BudgetServiceItem from "@/components/budget/budgetDetail/BudgetServiceItem"
+import BudgetTerms from "@/components/budget/budgetDetail/BudgetTerms"
+import ActivityTimeline from "@/components/budget/budgetDetail/ActivityTimeline"
 
 interface BudgetDetailProps {
   budget: Budget
@@ -11,7 +11,6 @@ interface BudgetDetailProps {
 function BudgetDetail({ budget }: BudgetDetailProps) {
   return (
     <div className="flex flex-col gap-8">
-      {/* Datos generales */}
       <section className="grid grid-cols-1 items-center gap-6 rounded-lg border border-gray-100 bg-white p-6 shadow-sm md:grid-cols-[1fr_1fr_auto]">
         <div>
           <h2 className="text-lg font-bold text-gray-900">{budget.client.name}</h2>
@@ -36,7 +35,6 @@ function BudgetDetail({ budget }: BudgetDetailProps) {
         </div>
       </section>
 
-      {/* Resumen */}
       <section>
         <h2 className="mb-4 text-base font-bold text-gray-900">Resum</h2>
 

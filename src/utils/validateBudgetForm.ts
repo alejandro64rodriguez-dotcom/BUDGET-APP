@@ -1,4 +1,3 @@
-// src/utils/validateBudgetForm.ts
 import type { BudgetFormData } from "@/types/budget"
 
 export type BudgetFormErrors = Record<keyof BudgetFormData, string>

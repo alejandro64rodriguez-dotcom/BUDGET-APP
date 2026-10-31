@@ -55,62 +55,58 @@ La configuración de los tests está en `vite.config.ts` y el setup global en `s
 ## Arquitectura de carpetas
 
 ```
-.
+budget-app/
 ├── public/
 ├── src/
 │   ├── assets/
 │   │   ├── image/
 │   │   │   └── header-background.png
 │   │   └── logo/
-│   │       └── logo-frontender.png
-│   │
+│   │       └── logo-frontend.png
 │   ├── components/
 │   │   ├── budget/
-│   │   │   ├── ActivityTimeline.tsx
-│   │   │   ├── BudgetDetail.tsx
-│   │   │   ├── BudgetServiceItem.tsx
-│   │   │   ├── BudgetTerms.tsx
-│   │   │   └── BudgetTerms.test.tsx
-│   │   ├── BudgetCard.tsx
-│   │   ├── BudgetForm.tsx
-│   │   ├── BudgetSearch.tsx
-│   │   ├── BudgetSummary.tsx
-│   │   ├── FormField.tsx
-│   │   ├── Header.tsx
-│   │   └── ServiceCard.tsx
-│   │
+│   │   │   ├── budgetDetail/
+│   │   │   │   ├── ActivityTimeline.tsx
+│   │   │   │   ├── BudgetDetail.tsx
+│   │   │   │   ├── BudgetServiceItem.tsx
+│   │   │   │   ├── BudgetTerms.test.tsx
+│   │   │   │   └── BudgetTerms.tsx
+│   │   │   ├── BudgetCard.tsx
+│   │   │   ├── BudgetForm.tsx
+│   │   │   ├── BudgetSearch.tsx
+│   │   │   ├── BudgetSummary.tsx
+│   │   │   └── FormField.tsx
+│   │   └── Header.tsx
 │   ├── data/
 │   │   └── services.json
-│   │
 │   ├── pages/
-│   │   ├── BudgetDetailPage.tsx
 │   │   ├── BudgetDetailPage.test.tsx
+│   │   ├── BudgetDetailPage.tsx
+│   │   ├── HomePage.test.tsx
 │   │   └── HomePage.tsx
-│   │
+│   ├── serviceCard/
+│   │   ├── ServiceCard.tsx
+│   │   └── ToggleService.tsx
 │   ├── test/
 │   │   └── setup.ts
-│   │
 │   ├── types/
 │   │   ├── budget.ts
 │   │   └── service.ts
-│   │
 │   ├── utils/
 │   │   ├── budget.ts
 │   │   ├── budgetSearch.ts
 │   │   └── validateBudgetForm.ts
-│   │
 │   ├── App.tsx
 │   ├── index.css
 │   └── main.tsx
-│
 ├── .gitignore
 ├── eslint.config.js
 ├── index.html
-├── package.json
 ├── package-lock.json
+├── package.json
 ├── README.md
-├── tsconfig.json
 ├── tsconfig.app.json
+├── tsconfig.json
 ├── tsconfig.node.json
 └── vite.config.ts
 ```
