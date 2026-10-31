@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react"
 
-interface FormFieldProps extends ComponentProps<"input"> {
+interface FormFieldProps extends ComponentProps<"input"> { 
   label: string
   error?: string
 }

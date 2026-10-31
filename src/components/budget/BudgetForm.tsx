@@ -1,5 +1,5 @@
 import { useState, type SyntheticEvent } from "react"
-import FormField from "@/components/FormField"
+import FormField from "@/components/budget/FormField"
 import type { BudgetFormData } from "@/types/budget"
 import {
   EMPTY_ERRORS,

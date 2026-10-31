@@ -1,8 +1,8 @@
 import type { Budget } from "@/types/budget"
 import { formatPrice, getServiceLabel } from "@/utils/budget"
-import BudgetServiceItem from "@/components/budget/BudgetServiceItem"
-import BudgetTerms from "@/components/budget/BudgetTerms"
-import ActivityTimeline from "@/components/budget/ActivityTimeline"
+import BudgetServiceItem from "@/components/budget/budgetDetail/BudgetServiceItem"
+import BudgetTerms from "@/components/budget/budgetDetail/BudgetTerms"
+import ActivityTimeline from "@/components/budget/budgetDetail/ActivityTimeline"
 
 interface BudgetDetailProps {
   budget: Budget

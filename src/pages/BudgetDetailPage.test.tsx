@@ -59,7 +59,7 @@ describe("BudgetDetailPage", () => {
   it("should render the budget details when a budget exists", () => {
     renderBudgetDetailPage({ budget: mockBudget })
 
-    expect(screen.getByTestId("budget-detail")).toBeInTheDocument()
+    expect(screen.getByRole("heading", { name: "Resum" })).toBeInTheDocument()
 
     expect(screen.getByText("Alex Garcia")).toBeInTheDocument()
   })

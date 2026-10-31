@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom"
 import type { Budget } from "@/types/budget"
-import BudgetDetail from "@/components/budget/BudgetDetail"
+import BudgetDetail from "@/components/budget/budgetDetail/BudgetDetail"
 
 interface LocationState {
   budget?: Budget

@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom"
 import { services, type Service } from "@/types/service"
 import type { Budget, BudgetFormData } from "@/types/budget"
 import Header from "@/components/Header"
-import ServiceCard from "@/components/ServiceCard"
-import BudgetForm from "@/components/BudgetForm"
-import BudgetSummary from "@/components/BudgetSummary"
-import BudgetCard from "@/components/BudgetCard"
+import ServiceCard from "@/serviceCard/ServiceCard"
+import BudgetForm from "@/components/budget/BudgetForm"
+import BudgetSummary from "@/components/budget/BudgetSummary"
+import BudgetCard from "@/components/budget/BudgetCard"
 import { getBudgetTotal } from "@/utils/budget"
-import BudgetSearch from "@/components/BudgetSearch"
+import BudgetSearch from "@/components/budget/BudgetSearch"
 import { filterAndSortBudgets } from "@/utils/budgetSearch"
+import {toggleService} from '@/serviceCard/ToggleService'
 
 function HomePage() {
   const navigate = useNavigate()
@@ -32,13 +33,10 @@ useEffect(() => {
   searchTerm,
   sortBy,
 )
-  function toggleService(service: Service): void {
-    setSelectedServices((previous) =>
-      previous.some((item) => item.id === service.id)
-        ? previous.filter((item) => item.id !== service.id)
-        : [...previous, service]
-    )
-  }
+  
+  const handleToggleService = (service: Service) => {
+  setSelectedServices((previous) => toggleService(service, previous))
+}
   function handleBudgetSubmit(formData: BudgetFormData): void {
     const newBudget: Budget = {
       id: crypto.randomUUID().slice(0, 8),
@@ -67,7 +65,7 @@ useEffect(() => {
             key={service.id}
             service={service}
             isSelected={selectedServices.some((item) => item.id === service.id)}
-            onToggle={() => toggleService(service)}
+            onToggle={() => handleToggleService(service)}
             pages={pages}
             languages={languages}
             setPages={setPages}
